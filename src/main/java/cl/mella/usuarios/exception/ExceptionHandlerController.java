@@ -13,8 +13,9 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import java.util.Date;
-
+/**
+ * Manejos de excepciones con codigo de Http
+ */
 @RestControllerAdvice
 @Log4j
 public class ExceptionHandlerController {

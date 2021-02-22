@@ -44,7 +44,6 @@ public class AuthController {
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
-        log.info("REQUEST NEW USER: " + nuevoUsuario);
         if (bindingResult.hasErrors())
             return new ResponseEntity(new ErrorRequest(String.valueOf(HttpStatus.BAD_REQUEST.value()), "Campos incorrectos o email inválido"), HttpStatus.BAD_REQUEST);
         if (usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))

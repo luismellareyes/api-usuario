@@ -11,13 +11,16 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ *Clase de auditoria de fechas
+ * @autor LMella
+ * @param <U>
+ */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 public class Auditable<U> {
-
-
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     public Date created;

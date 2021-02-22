@@ -21,7 +21,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Objeto con campos de usuario
+ * Objeto con campos de usuario para registro
  */
 @Data
 @Log4j

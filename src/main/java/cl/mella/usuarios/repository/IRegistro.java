@@ -13,9 +13,4 @@ public interface IRegistro extends JpaRepository<Registro, String> {
     List<Registro> findByIsActive(Boolean isActive);
 
     Optional<String> findByEmail(String email);
-
-    //@Query(value = "Select * From registro where email = ?1", nativeQuery = true)
-    //RegistroRET findRegistro(String email);
-
-
 }

@@ -4,24 +4,16 @@ import cl.mella.usuarios.security.dto.JwtDto;
 import cl.mella.usuarios.security.dto.LoginUsuario;
 import cl.mella.usuarios.security.dto.NuevoUsuario;
 import cl.mella.usuarios.security.entity.UsuarioToken;
-import cl.mella.usuarios.security.enums.RolNombre;
 import cl.mella.usuarios.security.jwt.JwtProvider;
-import cl.mella.usuarios.security.service.UsuarioService;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Log4j
 @Service

@@ -4,7 +4,6 @@ import cl.mella.usuarios.Service.ValidarUsuario;
 import cl.mella.usuarios.exception.ErrorRequest;
 import cl.mella.usuarios.model.Phones;
 import cl.mella.usuarios.model.Registro;
-import cl.mella.usuarios.dto.RetRegistro;
 import cl.mella.usuarios.dto.Usuario;
 import cl.mella.usuarios.repository.IPhones;
 import cl.mella.usuarios.repository.IQuery;
@@ -79,22 +78,14 @@ public class UsuarioController {
             p.setIdRegistro(uuid);
         }
         iPhones.saveAll(phones);
-
-        //log.info(iQuery.findRegistro(usuario.getEmail()));
-
-
         return new ResponseEntity(iQuery.findRegistro(usuario.getEmail()), HttpStatus.CREATED);
     }
 
     @GetMapping("/lista")
     public ResponseEntity<?> getListaUsuario() {
-
-        List<String> lista = new ArrayList<>();
-
-        for (Registro r : iRegistro.findByIsActive(true)) {
-            lista.add(r.email);
-        }
-        return new ResponseEntity(lista, HttpStatus.OK);
+        Map<String, List<String>> ret = new HashMap<>();
+        ret.put("Usuarios", iQuery.findListIsActive());
+        return new ResponseEntity(ret, HttpStatus.OK);
     }
 
 
