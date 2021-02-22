@@ -2,6 +2,7 @@ package cl.mella.usuarios.security.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.extern.log4j.Log4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 @AllArgsConstructor
+@Log4j
 public class UsuarioPrincipal implements UserDetails {
     private String nombre;
     private String nombreUsuario;
@@ -25,9 +27,10 @@ public class UsuarioPrincipal implements UserDetails {
 
         Collection<GrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        if(usuarioToken.getRol().contains("admin"))
-            grantedAuthorities.add(new SimpleGrantedAuthority("ADMIN"));
 
+        if (usuarioToken.getRol().contains("admin"))
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        log.info("UT: " + usuarioToken + " - " + grantedAuthorities);
 
         return new UsuarioPrincipal(usuarioToken.getNombre(), usuarioToken.getNombreUsuario(), usuarioToken.getEmail(), usuarioToken.getPassword(), grantedAuthorities);
     }

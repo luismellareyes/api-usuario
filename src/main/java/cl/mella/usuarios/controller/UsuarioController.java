@@ -49,7 +49,7 @@ public class UsuarioController {
     @Autowired
     IQuery iQuery;
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/registro")
     public ResponseEntity<?> registro(@Validated @RequestBody Usuario usuario) {
         log.info("UsuarioToken: " + usuario);

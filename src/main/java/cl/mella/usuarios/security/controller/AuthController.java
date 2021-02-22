@@ -46,11 +46,11 @@ public class AuthController {
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
         log.info("REQUEST NEW USER: " + nuevoUsuario);
         if (bindingResult.hasErrors())
-            return new ResponseEntity(new ErrorRequest(String.valueOf(HttpStatus.BAD_REQUEST.value()), "campos mal puestos o email inválido"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new ErrorRequest(String.valueOf(HttpStatus.BAD_REQUEST.value()), "Campos incorrectos o email inválido"), HttpStatus.BAD_REQUEST);
         if (usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
-            return new ResponseEntity(new ErrorRequest(String.valueOf(HttpStatus.BAD_REQUEST.value()), "ese nombre ya existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new ErrorRequest(String.valueOf(HttpStatus.BAD_REQUEST.value()), "Nombre ya existe"), HttpStatus.BAD_REQUEST);
         if (usuarioService.existsByEmail(nuevoUsuario.getEmail()))
-            return new ResponseEntity(new ErrorRequest(String.valueOf(HttpStatus.BAD_REQUEST.value()), "ese email ya existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new ErrorRequest(String.valueOf(HttpStatus.BAD_REQUEST.value()), "Email ya existe"), HttpStatus.BAD_REQUEST);
         if (!validarUsuario.validPasswordRegex(nuevoUsuario))
             return new ResponseEntity(new ErrorRequest(String.valueOf(HttpStatus.BAD_REQUEST.value()), "Contraseña no tiene formato requerido, Una Mayuscula, letras Minusculas y dos numeros"), HttpStatus.BAD_REQUEST);
 
