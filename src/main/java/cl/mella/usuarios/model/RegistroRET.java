@@ -24,8 +24,6 @@ public class RegistroRET {
 
     @Id
     public UUID id;
-    public String email;
-    public String password;
     public Date created;
     public Date modified;
     public Date last_login;

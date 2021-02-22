@@ -44,6 +44,7 @@ public class GeneratorToken {
         log.info("Login: " + loginUsuario);
         Authentication authentication =
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
+        log.info("auth: " + authentication);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 

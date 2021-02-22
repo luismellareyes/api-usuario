@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -76,4 +77,14 @@ public class ExceptionHandlerController {
         ErrorRequest errorRequest = new ErrorRequest(String.valueOf(HttpStatus.CONFLICT.value()), "El correo ya registrado");
         return errorRequest;
     }
+
+    //
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(value = HttpStatus.FORBIDDEN)
+    public ErrorRequest ForBiddenException(Exception ex, WebRequest request) {
+        log.info("ConstraintViolationException: " + ex.toString());
+        ErrorRequest errorRequest = new ErrorRequest(String.valueOf(HttpStatus.FORBIDDEN.value()), "Recurso no autorizado para el usuario, No cuenta con el rol Admin");
+        return errorRequest;
+    }
+
 }

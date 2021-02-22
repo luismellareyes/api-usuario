@@ -63,6 +63,7 @@ public class AuthController {
 
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
+
             return new ResponseEntity(new ErrorRequest(String.valueOf(HttpStatus.BAD_REQUEST.value()), "El usuario y/o Password esta mal ingresados"), HttpStatus.BAD_REQUEST);
         JwtDto jwtDto = generatorToken.generator(loginUsuario);
         return new ResponseEntity(jwtDto, HttpStatus.OK);

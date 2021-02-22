@@ -18,6 +18,7 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +49,7 @@ public class UsuarioController {
     @Autowired
     IQuery iQuery;
 
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/registro")
     public ResponseEntity<?> registro(@Validated @RequestBody Usuario usuario) {
         log.info("UsuarioToken: " + usuario);
